@@ -4,12 +4,12 @@
 
 | Item | Description |
 |---|---|
-| Course |  |
-| Class |  |
+| Course | MMA301 |
+| Class | SE19B05 |
 | Semester | SU26 |
-| Group |  |
-| Topic |  |
-| Repository |  |
+| Group | Group 04 |
+| Topic |  Cultural & Craft Workshop Booking System|
+| Repository | https://github.com/fptu-se-su26/mma301-su26-mma301_se19b05_group-04 |
 
 ---
 
@@ -17,11 +17,11 @@
 
 | No | Student ID | Full Name | GitHub Username | Role | Main Responsibility |
 |---:|---|---|---|---|---|
-| 1 |  |  |  | Leader |  |
-| 2 |  |  |  | Member |  |
-| 3 |  |  |  | Member |  |
-| 4 |  |  |  | Member |  |
-| 5 |  |  |  | Member |  |
+| 1 | DE180722 | Nguyễn Ngọc Bữu | BuuNgoc | Leader | nguyenngocbuu |
+| 2 | DE180873 |  Nguyễn Văn Hoàng| UGEhydra | Member | hoangg |
+| 3 | DE180221 | Trương Đình Nhật |  | Member | nhat |
+| 4 | DE180218 | Vương Mai Ngân | Vnganm | Member | vuongmaingan |
+| 5 | DE180369 |  Văn Đức Tài| Ivant0004 | Member |  |
 
 ---
 
