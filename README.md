@@ -19,9 +19,9 @@
 |---:|---|---|---|---|---|
 | 1 | DE180722 | Nguyễn Ngọc Bữu | BuuNgoc | Leader | nguyenngocbuu |
 | 2 | DE180873 |  Nguyễn Văn Hoàng| UGEhydra | Member | hoangg |
-| 3 | DE180221 | Trương Đình Nhật |  | Member | nhat |
+| 3 | DE180221 | Trương Đình Nhật | dinhnhat73 | Member | nhat |
 | 4 | DE180218 | Vương Mai Ngân | Vnganm | Member | vuongmaingan |
-| 5 | DE180369 |  Văn Đức Tài| Ivant0004 | Member |  |
+| 5 | DE180369 |  Văn Đức Tài| Ivant0004 | Member | TaiVD |
 
 ---
 
