@@ -10,99 +10,451 @@ const MOCK_PROPERTIES = [
 export default function HomeScreen({ navigation }) {
   const renderPropertyCard = ({ item }) => (
     <TouchableOpacity style={styles.card} onPress={() => navigation.navigate('Details', { property: item })}>
-      <Image source={{ uri: item.image }} style={styles.cardImage} />
+      <View style={styles.cardImageWrap}>
+        <Image source={{ uri: item.image }} style={styles.cardImage} />
+        <View style={styles.favoriteBadge}>
+          <Text style={styles.favoriteText}>♡</Text>
+        </View>
+        <View style={styles.availableBadge}>
+          <Text style={styles.availableText}>Available Now</Text>
+        </View>
+      </View>
+
       <View style={styles.cardInfo}>
-        <Text style={styles.cardTitle}>{item.title}</Text>
-        <Text style={styles.cardLocation}>{item.location}</Text>
-        <Text style={styles.cardPrice}>{item.price}</Text>
+        <View style={styles.cardTitleRow}>
+          <View style={{ flex: 1 }}>
+            <Text style={styles.cardTitle}>{item.title}</Text>
+            <Text style={styles.cardLocation}>⌖ {item.location}</Text>
+          </View>
+
+          <View style={styles.priceBox}>
+            <Text style={styles.cardPrice}>{item.price}</Text>
+          </View>
+        </View>
+
+        <View style={styles.cardDivider} />
+
+        <View style={styles.specRow}>
+          <Text style={styles.specText}>2 Bed</Text>
+          <Text style={styles.specText}>2 Bath</Text>
+          <Text style={styles.specText}>1,200 sqft</Text>
+        </View>
       </View>
     </TouchableOpacity>
   );
 
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView showsVerticalScrollIndicator={false}>
-        {/* Top Profile Header */}
-        <View style={styles.headerContainer}>
-          <View>
-            <Text style={styles.welcomeText}>Chào mừng bạn quay lại 👋</Text>
-            <Text style={styles.userNameText}>Nguyễn Ngọc Bửu</Text>
+      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollContent}>
+        <View style={styles.topBar}>
+          <Text style={styles.menuText}>☰</Text>
+          <Text style={styles.brandText}>Smart Rent</Text>
+          <View style={styles.avatarPlaceholder}>
+            <Text style={styles.avatarText}>B</Text>
           </View>
-          <View style={styles.avatarPlaceholder} />
         </View>
 
-        {/* Search Bar */}
+        <View style={styles.headerContainer}>
+          <Text style={styles.welcomeText}>Find your perfect home</Text>
+        </View>
+
         <View style={styles.searchContainer}>
-          <TextInput 
-            style={styles.searchInput} 
-            placeholder="Tìm kiếm khu vực, căn hộ..."
-            placeholderTextColor="#94A3B8"
+          <Text style={styles.searchIcon}>⌕</Text>
+          <TextInput
+            style={styles.searchInput}
+            placeholder="Search by city, neighborhood..."
+            placeholderTextColor="#6b7280"
           />
         </View>
 
-        {/* Categories Section */}
         <View style={styles.sectionHeader}>
-          <Text style={styles.sectionTitle}>Danh Mục</Text>
+          <Text style={styles.sectionTitle}>Categories</Text>
         </View>
+
         <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.categoryContainer}>
-          {['Tất Cả', 'Chung Cư', 'Nhà Nguyên Căn', 'Phòng Trọ', 'Studio'].map((cat, index) => (
+          {['Apartment', 'Room', 'House', 'Studio'].map((cat, index) => (
             <TouchableOpacity key={index} style={[styles.categoryBadge, index === 0 && styles.activeCategoryBadge]}>
-              <Text style={[styles.categoryText, index === 0 && styles.activeCategoryText]}>{cat}</Text>
+              <Text style={[styles.categoryText, index === 0 && styles.activeCategoryText]}>
+                {cat}
+              </Text>
             </TouchableOpacity>
           ))}
         </ScrollView>
 
-        {/* Featured Section */}
         <View style={styles.sectionHeader}>
-          <Text style={styles.sectionTitle}>Gợi Ý Nổi Bật</Text>
-          <Text style={styles.seeAllText}>Xem tất cả</Text>
+          <Text style={styles.sectionTitle}>Featured Listings</Text>
+          <Text style={styles.seeAllText}>View all</Text>
         </View>
 
-        <FlatList 
+        <FlatList
           data={MOCK_PROPERTIES}
           renderItem={renderPropertyCard}
           keyExtractor={item => item.id}
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          contentContainerStyle={{ paddingLeft: 20, paddingBottom: 20 }}
+          scrollEnabled={false}
         />
+
+        <View style={styles.promoCard}>
+          <Text style={styles.promoTitle}>Fast Approval</Text>
+          <Text style={styles.promoDesc}>
+            Most applications are reviewed within 24 hours.
+          </Text>
+          <View style={styles.learnButton}>
+            <Text style={styles.learnText}>Learn More</Text>
+          </View>
+        </View>
+
+        <View style={styles.securityCard}>
+          <Text style={styles.securityTitle}>Secure Payments</Text>
+          <Text style={styles.securityDesc}>
+            Bank-grade security for all your rental transactions.
+          </Text>
+        </View>
       </ScrollView>
 
-      {/* Mock Bottom Tab Menu Layout */}
       <View style={styles.bottomTabMock}>
-        <TouchableOpacity style={styles.tabItem}><Text style={styles.tabActiveText}>🏠 Home</Text></TouchableOpacity>
-        <TouchableOpacity style={styles.tabItem}><Text style={styles.tabInactiveText}>🔍 Tìm kiếm</Text></TouchableOpacity>
-        <TouchableOpacity style={styles.tabItem}><Text style={styles.tabInactiveText}>❤️ Đã lưu</Text></TouchableOpacity>
-        <TouchableOpacity style={styles.tabItem}><Text style={styles.tabInactiveText}>👤 Cá nhân</Text></TouchableOpacity>
+        <TouchableOpacity style={styles.tabActive}>
+          <Text style={styles.tabIconActive}>⌂</Text>
+          <Text style={styles.tabActiveText}>Home</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.tabItem}>
+          <Text style={styles.tabIcon}>⌕</Text>
+          <Text style={styles.tabInactiveText}>Search</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.tabItem}>
+          <Text style={styles.tabIcon}>♡</Text>
+          <Text style={styles.tabInactiveText}>Saved</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.tabItem}>
+          <Text style={styles.tabIcon}>♙</Text>
+          <Text style={styles.tabInactiveText}>Profile</Text>
+        </TouchableOpacity>
       </View>
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#FFFFFF' },
-  headerContainer: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingHorizontal: 20, marginTop: 20 },
-  welcomeText: { fontSize: 14, color: '#64748B' },
-  userNameText: { fontSize: 20, fontWeight: 'bold', color: '#1E293B' },
-  avatarPlaceholder: { width: 45, height: 45, borderRadius: 25, backgroundColor: '#E2E8F0', borderWidth: 1, borderColor: '#CBD5E1' },
-  searchContainer: { paddingHorizontal: 20, marginTop: 20 },
-  searchInput: { backgroundColor: '#F1F5F9', borderRadius: 12, padding: 14, fontSize: 15, color: '#0F172A' },
-  sectionHeader: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingHorizontal: 20, marginTop: 28, marginBottom: 12 },
-  sectionTitle: { fontSize: 18, fontWeight: '700', color: '#1E293B' },
-  seeAllText: { fontSize: 13, color: '#0ea5e9', fontWeight: '600' },
-  categoryContainer: { paddingHorizontal: 20, marginBottom: 10 },
-  categoryBadge: { paddingHorizontal: 16, paddingVertical: 10, borderRadius: 20, backgroundColor: '#F1F5F9', marginRight: 10 },
-  activeCategoryBadge: { backgroundColor: '#0ea5e9' },
-  categoryText: { fontSize: 14, color: '#64748B', fontWeight: '500' },
-  activeCategoryText: { color: '#FFFFFF', fontWeight: 'bold' },
-  card: { width: 240, backgroundColor: '#FFFFFF', borderRadius: 16, marginRight: 16, borderWidth: 1, borderColor: '#F1F5F9', shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.05, shadowRadius: 10, elevation: 2 },
-  cardImage: { width: '100%', height: 140, borderTopLeftRadius: 16, borderTopRightRadius: 16 },
-  cardInfo: { padding: 14 },
-  cardTitle: { fontSize: 16, fontWeight: 'bold', color: '#1E293B' },
-  cardLocation: { fontSize: 12, color: '#64748B', marginTop: 4 },
-  cardPrice: { fontSize: 15, fontWeight: '700', color: '#0ea5e9', marginTop: 8 },
-  bottomTabMock: { flexDirection: 'row', height: 65, borderTopWidth: 1, borderTopColor: '#F1F5F9', alignItems: 'center', justifyContent: 'space-around', backgroundColor: '#FFFFFF' },
-  tabItem: { alignItems: 'center' },
-  tabActiveText: { color: '#0ea5e9', fontWeight: 'bold', fontSize: 12 },
-  tabInactiveText: { color: '#94A3B8', fontSize: 12 }
+  container: { 
+    flex: 1, 
+    backgroundColor: '#f4f7ff' 
+  },
+  scrollContent: { 
+    paddingBottom: 105 
+  },
+
+  topBar: {
+    paddingHorizontal: 24,
+    paddingTop: 12,
+    paddingBottom: 22,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  menuText: {
+    fontSize: 24,
+    color: '#2563eb',
+    fontWeight: '700',
+  },
+  brandText: {
+    fontSize: 16,
+    fontWeight: '800',
+    color: '#2563eb',
+  },
+  avatarPlaceholder: {
+    width: 38,
+    height: 38,
+    borderRadius: 19,
+    backgroundColor: '#dbeafe',
+    borderWidth: 2,
+    borderColor: '#2563eb',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  avatarText: {
+    color: '#2563eb',
+    fontWeight: '800',
+  },
+
+  headerContainer: {
+    paddingHorizontal: 24,
+    marginTop: 10,
+  },
+  welcomeText: {
+    fontSize: 18,
+    color: '#111827',
+    fontWeight: '500',
+  },
+
+  searchContainer: {
+    marginHorizontal: 24,
+    marginTop: 16,
+    height: 58,
+    borderRadius: 14,
+    borderWidth: 1,
+    borderColor: '#c7d2fe',
+    backgroundColor: '#f8fbff',
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 16,
+  },
+  searchIcon: {
+    fontSize: 22,
+    color: '#6b7280',
+    marginRight: 10,
+  },
+  searchInput: {
+    flex: 1,
+    fontSize: 15,
+    color: '#111827',
+  },
+
+  sectionHeader: {
+    marginTop: 32,
+    marginBottom: 14,
+    paddingHorizontal: 24,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  sectionTitle: {
+    fontSize: 17,
+    fontWeight: '700',
+    color: '#111827',
+  },
+  seeAllText: {
+    fontSize: 14,
+    color: '#2563eb',
+    fontWeight: '700',
+  },
+
+  categoryContainer: {
+    paddingHorizontal: 24,
+  },
+  categoryBadge: {
+    paddingHorizontal: 28,
+    paddingVertical: 15,
+    borderRadius: 999,
+    backgroundColor: '#e7efff',
+    marginRight: 14,
+  },
+  activeCategoryBadge: {
+    backgroundColor: '#2563eb',
+    shadowColor: '#2563eb',
+    shadowOffset: { width: 0, height: 5 },
+    shadowOpacity: 0.25,
+    shadowRadius: 10,
+    elevation: 4,
+  },
+  categoryText: {
+    color: '#111827',
+    fontWeight: '700',
+    fontSize: 14,
+  },
+  activeCategoryText: {
+    color: '#ffffff',
+  },
+
+  card: {
+    marginHorizontal: 24,
+    marginBottom: 24,
+    backgroundColor: '#ffffff',
+    borderRadius: 24,
+    overflow: 'hidden',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 8 },
+    shadowOpacity: 0.08,
+    shadowRadius: 18,
+    elevation: 5,
+  },
+  cardImageWrap: {
+    position: 'relative',
+  },
+  cardImage: {
+    width: '100%',
+    height: 220,
+  },
+  favoriteBadge: {
+    position: 'absolute',
+    top: 16,
+    right: 16,
+    width: 36,
+    height: 36,
+    borderRadius: 18,
+    backgroundColor: 'rgba(255,255,255,0.78)',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  favoriteText: {
+    fontSize: 26,
+    color: '#ffffff',
+    marginTop: -4,
+  },
+  availableBadge: {
+    position: 'absolute',
+    left: 18,
+    bottom: 16,
+    backgroundColor: '#2563eb',
+    paddingHorizontal: 14,
+    paddingVertical: 9,
+    borderRadius: 999,
+  },
+  availableText: {
+    color: '#ffffff',
+    fontSize: 12,
+    fontWeight: '800',
+  },
+
+  cardInfo: {
+    padding: 22,
+  },
+  cardTitleRow: {
+    flexDirection: 'row',
+    gap: 12,
+  },
+  cardTitle: {
+    fontSize: 22,
+    fontWeight: '800',
+    color: '#111827',
+  },
+  cardLocation: {
+    marginTop: 7,
+    fontSize: 13,
+    color: '#374151',
+  },
+  priceBox: {
+    alignItems: 'flex-end',
+  },
+  cardPrice: {
+    fontSize: 18,
+    fontWeight: '800',
+    color: '#2563eb',
+  },
+  monthText: {
+    fontSize: 12,
+    color: '#6b7280',
+  },
+  cardDivider: {
+    height: 1,
+    backgroundColor: '#dbeafe',
+    marginVertical: 14,
+  },
+  specRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  specText: {
+    fontSize: 12,
+    color: '#111827',
+    fontWeight: '600',
+  },
+
+  promoCard: {
+    marginHorizontal: 24,
+    marginTop: 10,
+    backgroundColor: '#0b55d9',
+    borderRadius: 28,
+    padding: 30,
+    shadowColor: '#2563eb',
+    shadowOffset: { width: 0, height: 8 },
+    shadowOpacity: 0.25,
+    shadowRadius: 16,
+    elevation: 5,
+  },
+  promoTitle: {
+    fontSize: 21,
+    fontWeight: '800',
+    color: '#ffffff',
+    marginBottom: 10,
+  },
+  promoDesc: {
+    fontSize: 14,
+    color: '#ffffff',
+    lineHeight: 21,
+    marginBottom: 20,
+  },
+  learnButton: {
+    backgroundColor: '#ffffff',
+    paddingVertical: 12,
+    paddingHorizontal: 24,
+    alignSelf: 'flex-start',
+    borderRadius: 999,
+  },
+  learnText: {
+    color: '#2563eb',
+    fontWeight: '700',
+  },
+
+  securityCard: {
+    marginHorizontal: 24,
+    marginTop: 24,
+    backgroundColor: '#dbeafe',
+    borderRadius: 28,
+    padding: 30,
+  },
+  securityTitle: {
+    fontSize: 21,
+    fontWeight: '800',
+    color: '#111827',
+    marginBottom: 10,
+  },
+  securityDesc: {
+    fontSize: 14,
+    color: '#374151',
+    lineHeight: 21,
+  },
+
+  bottomTabMock: {
+    position: 'absolute',
+    left: 12,
+    right: 12,
+    bottom: 10,
+    height: 66,
+    backgroundColor: '#eef4ff',
+    borderRadius: 14,
+    borderWidth: 1,
+    borderColor: '#dbeafe',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-around',
+    paddingHorizontal: 10,
+  },
+  tabActive: {
+    width: 58,
+    height: 50,
+    borderRadius: 14,
+    backgroundColor: '#2563eb',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  tabItem: {
+    width: 58,
+    height: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  tabIconActive: {
+    color: '#ffffff',
+    fontSize: 15,
+    fontWeight: '700',
+    marginBottom: 3,
+  },
+  tabIcon: {
+    color: '#111827',
+    fontSize: 15,
+    fontWeight: '500',
+    marginBottom: 3,
+  },
+  tabActiveText: {
+    color: '#ffffff',
+    fontSize: 10,
+    fontWeight: '700',
+  },
+  tabInactiveText: {
+    color: '#111827',
+    fontSize: 10,
+    fontWeight: '500',
+  },
 });
