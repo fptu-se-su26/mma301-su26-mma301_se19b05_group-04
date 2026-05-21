@@ -4,14 +4,14 @@
 
 | Thông tin | Nội dung |
 |---|---|
-| Môn học |  |
-| Mã môn học |  |
-| Lớp |  |
-| Học kỳ |  |
-| Tên bài tập / Project |  |
-| Tên sinh viên / Nhóm |  |
-| MSSV / Danh sách MSSV |  |
-| Giảng viên hướng dẫn |  |
+| Môn học | Multiplatform Mobile App Development_Phát triển ứng dụng di động đa nền tảng |
+| Mã môn học | MMA301 |
+| Lớp | SE19B05 |
+| Học kỳ | SU26 |
+| Tên bài tập / Project | Cultural & Craft Workshop Booking System |
+| Tên sinh viên / Nhóm | Vuong Mai Ngan |
+| MSSV / Danh sách MSSV | DE180218 |
+| Giảng viên hướng dẫn | QuangLTN3 |
 | Ngày bắt đầu |  |
 | Ngày hoàn thành |  |
 
@@ -54,14 +54,13 @@ Ví dụ:
 
 ### Mô tả mục tiêu sử dụng AI
 
-```text
-Viết tại đây...
+ - Sử dụng AI để hỗ trợ phân tích yêu cầu hệ thống, thiết kế database, thiết kế giao diện React Native, debug lỗi Git/GitHub, hỗ trợ viết code frontend và giải thích code.
 
 ## 4. Nhật ký sử dụng AI chi tiết
 
 > Mỗi lần sử dụng AI cho một phần quan trọng của bài tập/project, sinh viên cần ghi lại theo mẫu bên dưới.  
 > Sinh viên/nhóm có thể nhân bản mẫu “Lần sử dụng AI” nhiều lần tùy theo số lần sử dụng AI thực tế.
-
+ - Thiết kế giao diện LoginScreen bằng React Native JSX với email, password, icon hiện mật khẩu và nút login.
 ---
 
 ### Lần sử dụng AI số 1
@@ -107,8 +106,8 @@ Viết tại đây...
 #### 4.5. Minh chứng
 
 | Loại minh chứng | Nội dung |
-|---|---|
-| Link commit |  |
+|git|up phần login và signup|
+| Link commit | https://github.com/fptu-se-su26/mma301-su26-mma301_se19b05_group-04/tree/baitapnhom |
 | File liên quan |  |
 | Screenshot |  |
 | Kết quả chạy/test |  |
