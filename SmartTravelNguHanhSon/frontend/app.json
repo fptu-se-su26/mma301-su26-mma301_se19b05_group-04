@@ -1,27 +1,31 @@
 {
   "expo": {
     "name": "Smart Travel Ngũ Hành Sơn",
-    "slug": "SmartTravelNguHanhSon",
+    "slug": "smart-travel-ngu-hanh-son",
+    "scheme": "smarttravel1",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash-icon.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#E6F4FE"
+      "backgroundColor": "#0EA5E9",
+      "resizeMode": "contain"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.buu.smarttravel1"
     },
     "android": {
+      "package": "com.buu.smarttravel1",
       "adaptiveIcon": {
-        "backgroundColor": "#E6F4FE",
-        "foregroundImage": "./assets/adaptive-icon.png"
-      }
+        "backgroundColor": "#0EA5E9"
+      },
+      "permissions": [
+        "ACCESS_FINE_LOCATION"
+      ]
     },
-    "web": {
-      "favicon": "./assets/favicon.png"
-    }
+    "plugins": [
+      "expo-font",
+      "expo-asset"
+    ]
   }
 }
