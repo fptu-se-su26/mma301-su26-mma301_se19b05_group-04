@@ -1,0 +1,156 @@
+{
+  "users": [
+    {
+      "_id": "65fd9d9b42e1a12345678901",
+      "username": "admin1",
+      "password": "$2b$10$exampleHashFor123456AdminReplaceWhenSeeded",
+      "role": "admin",
+      "createdAt": "2026-02-01T00:00:00.000Z"
+    },
+    {
+      "_id": "65fd9d9b42e1a12345678903",
+      "username": "user1",
+      "password": "$2b$10$exampleHashFor123456CustomerReplaceWhenSeeded",
+      "role": "customer",
+      "createdAt": "2026-02-01T00:00:00.000Z"
+    },
+    {
+      "_id": "65fd9d9b42e1a12345678904",
+      "username": "user2",
+      "password": "$2b$10$exampleHashFor123456Customer2ReplaceWhenSeeded",
+      "role": "customer",
+      "createdAt": "2026-02-01T00:00:00.000Z"
+    }
+  ],
+  "spaces": [
+    {
+      "_id": "65fd9dc542e1a12345678902",
+      "spaceCode": "MR-201",
+      "type": "meetingRoom",
+      "capacity": 8,
+      "status": "available",
+      "pricePerHour": 150000,
+      "amenities": [
+        "projector",
+        "whiteboard",
+        "air-conditioner"
+      ]
+    },
+    {
+      "_id": "65fd9dc542e1a12345678905",
+      "spaceCode": "MR-202",
+      "type": "meetingRoom",
+      "capacity": 12,
+      "status": "maintenance",
+      "pricePerHour": 200000,
+      "amenities": [
+        "projector",
+        "TV",
+        "whiteboard",
+        "air-conditioner"
+      ]
+    },
+    {
+      "_id": "65fd9dc542e1a12345678906",
+      "spaceCode": "D-101",
+      "type": "desk",
+      "capacity": 1,
+      "status": "available",
+      "pricePerHour": 50000,
+      "amenities": [
+        "power-outlet",
+        "wifi"
+      ]
+    },
+    {
+      "_id": "65fd9dc542e1a12345678907",
+      "spaceCode": "D-102",
+      "type": "desk",
+      "capacity": 1,
+      "status": "available",
+      "pricePerHour": 60000,
+      "amenities": [
+        "power-outlet",
+        "wifi",
+        "monitor"
+      ]
+    },
+    {
+      "_id": "65fd9dc542e1a12345678908",
+      "spaceCode": "MR-301",
+      "type": "meetingRoom",
+      "capacity": 20,
+      "status": "available",
+      "pricePerHour": 300000,
+      "amenities": [
+        "projector",
+        "speaker",
+        "microphone",
+        "whiteboard",
+        "air-conditioner"
+      ]
+    }
+  ],
+  "reservations": [
+    {
+      "_id": "65fd9e2a42e1a12345678909",
+      "userId": "65fd9d9b42e1a12345678903",
+      "spaceId": "65fd9dc542e1a12345678902",
+      "startTime": "2026-08-03T08:00:00.000Z",
+      "endTime": "2026-08-03T10:00:00.000Z",
+      "totalAmount": 300000,
+      "note": "Need HDMI cable"
+    },
+    {
+      "_id": "65fd9e2a42e1a12345678910",
+      "userId": "65fd9d9b42e1a12345678904",
+      "spaceId": "65fd9dc542e1a12345678906",
+      "startTime": "2026-08-04T13:00:00.000Z",
+      "endTime": "2026-08-04T14:30:00.000Z",
+      "totalAmount": 75000,
+      "note": "Partial hour booking test"
+    },
+    {
+      "_id": "65fd9e2a42e1a12345678911",
+      "userId": "65fd9d9b42e1a12345678903",
+      "spaceId": "65fd9dc542e1a12345678908",
+      "startTime": "2026-08-05T09:00:00.000Z",
+      "endTime": "2026-08-05T12:00:00.000Z",
+      "totalAmount": 900000,
+      "note": "Team workshop"
+    }
+  ],
+  "testCases": {
+    "loginAccounts": [
+      {
+        "role": "admin",
+        "username": "admin1",
+        "password": "123456"
+      },
+      {
+        "role": "customer",
+        "username": "user1",
+        "password": "123456"
+      },
+      {
+        "role": "customer",
+        "username": "user2",
+        "password": "123456"
+      }
+    ],
+    "maintenanceSpaceId": "65fd9dc542e1a12345678905",
+    "conflictExample": {
+      "spaceId": "65fd9dc542e1a12345678902",
+      "startTime": "2026-08-03T09:00:00.000Z",
+      "endTime": "2026-08-03T11:00:00.000Z",
+      "expectedStatus": 409,
+      "expectedMessage": "The selected space is already reserved for the requested time period."
+    },
+    "validPartialHourExample": {
+      "spaceId": "65fd9dc542e1a12345678907",
+      "startTime": "2026-08-06T08:00:00.000Z",
+      "endTime": "2026-08-06T09:30:00.000Z",
+      "expectedTotalAmount": 90000
+    }
+  }
+}
